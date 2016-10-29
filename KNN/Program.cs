@@ -11,8 +11,8 @@ namespace KNN
         {
             KNN knn = new KNN();
 
-            knn.LoadData("iris.dat", ref knn.trainingSetValues, ref knn.trainingSetClasses);
-            knn.LoadData("test.dat", ref knn.testSetValues, ref knn.testSetClasses);
+            knn.LoadData("iris.dat", KNN.DataType.TRAININGDATA);
+            knn.LoadData("test.dat", KNN.DataType.TESTDATA);
             knn.Classify(5);
             Console.ReadKey();
         }

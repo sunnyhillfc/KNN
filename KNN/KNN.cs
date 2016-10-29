@@ -8,20 +8,25 @@ namespace KNN
 {
     class KNN
     {
-        public int lines;
+        private int lines;
 
         // this holds the values of the training data
-        public List<double[]>   trainingSetValues = new List<double[]>();
+        private List<double[]>   trainingSetValues = new List<double[]>();
         // this holds the class associated with the values
-        public List<string>     trainingSetClasses = new List<string>();
+        private List<string>     trainingSetClasses = new List<string>();
 
         // same for the test input
-        public List<double[]>   testSetValues = new List<double[]>();
-        public List<string>     testSetClasses = new List<string>();
+        private List<double[]>   testSetValues = new List<double[]>();
+        private List<string>     testSetClasses = new List<string>();
         
-        public int K;
+        private int K;
 
-        public void LoadData(string path, ref List<double []> setVals, ref List<string> setClasses)
+        public enum DataType
+        {
+            TRAININGDATA, TESTDATA
+        };
+
+        public void LoadData(string path, DataType dataType)
         {
             StreamReader file = new StreamReader(path);
             string line;
@@ -53,8 +58,16 @@ namespace KNN
 
                 // finally, save them
 
-                setVals.Add(lineDoubles);
-                setClasses.Add(lineClass);
+                if (dataType == DataType.TRAININGDATA)
+                {
+                    this.trainingSetValues.Add(lineDoubles);
+                    this.trainingSetClasses.Add(lineClass);
+                }
+                else if(dataType == DataType.TESTDATA)
+                {
+                    this.testSetValues.Add(lineDoubles);
+                    this.testSetClasses.Add(lineClass);
+                }
                 this.lines++;
             }
 
@@ -116,7 +129,7 @@ namespace KNN
 
         }
 
-        static double EuclideanDistance(double[] sampleOne, double[] sampleTwo)
+        private static double EuclideanDistance(double[] sampleOne, double[] sampleTwo)
         {
             double d = 0.0;
 
