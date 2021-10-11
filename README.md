@@ -19,5 +19,5 @@ mcs Program.cs KNN.cs
 mono Program.exe
 ```
 
-#### Windows Compilation
+#### Re-Compiling on windows
 Copy the two .cs files into a new visual studio project (console app, .NET 3.1) 
