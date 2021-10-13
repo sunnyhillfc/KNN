@@ -15,6 +15,7 @@ Requires mcs and mono
 ```bash
 mcs Program.cs KNN.cs 
 ```
+To run:
 ```bash
 mono Program.exe
 ```
